@@ -1,0 +1,14 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# Plugin lock file (machine-specific)
+lazy-lock.json
+
+# Claude Code workspace state
+.claude/
