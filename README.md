@@ -1,6 +1,6 @@
 # Neovim Config
 
-Personal [LazyVim](https://lazyvim.github.io/) configuration with a custom procedural mountain landscape dashboard.
+Personal [LazyVim](https://lazyvim.org/) configuration with a custom procedural mountain landscape dashboard.
 
 ![Dashboard](assets/dashboard.png)
 
