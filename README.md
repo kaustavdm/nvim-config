@@ -11,6 +11,33 @@ Personal [LazyVim](https://lazyvim.org/) configuration with a custom procedural 
 - **AI integration** — [Claude Code](https://github.com/anthropics/claude-code) via [claudecode.nvim](https://github.com/anthropics/claudecode.nvim)
 - **Formatting & linting** — Prettier, ESLint, StyLua
 
+## Prerequisites
+
+macOS with [Homebrew](https://brew.sh/). `git` and `curl` are pre-installed on macOS.
+
+Use iTerm2 or similar as terminal.
+
+```sh
+# Core (required by LazyVim)
+brew install neovim fd ripgrep lazygit
+
+# Nerd Font (required for icons)
+brew install --cask font-symbols-only-nerd-font font-0xproto-nerd-font
+
+# Optional: tree-sitter CLI (only needed for building custom parsers)
+brew install tree-sitter
+```
+
+- **neovim** >= 0.9.0
+- **fd** — file finder used by the file picker
+- **ripgrep** — content search used by live grep
+- **lazygit** — git TUI integration
+- **Nerd Font** — required for icons; any patched font works (`brew search nerd-font`)
+
+> !IMPORTANT
+> **Font and font-sizing and font-spacing must be set in the terminal settings.**
+> e.g., set the `0xproto nerd font` as the font for the iTerm2 profile.
+
 ## Setup
 
 Requires [Neovim](https://neovim.io/) >= 0.9.0.
