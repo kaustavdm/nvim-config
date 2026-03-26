@@ -2,7 +2,34 @@
 
 Custom Neovim configuration built on [lazy.nvim](https://github.com/folke/lazy.nvim) with a procedural mountain landscape dashboard.
 
-![Dashboard](assets/dashboard.png)
+<table>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="assets/dashboard.png" alt="Dashboard"/><br/>
+      <sub>Dashboard — banner art (mountains), git status &amp; cwd, quick list of actions</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="assets/find-file.png" alt="Find file picker"/><br/>
+      <sub>Find file picker</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="assets/file-tree-ts.png" alt="File tree with TypeScript"/><br/>
+      <sub>File tree (neo-tree) with TypeScript</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="assets/git-change-marker-on-line.png" alt="Git change markers"/><br/>
+      <sub>Git change markers in gutter</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="assets/visual-mode-activated.png" alt="Visual mode"/><br/>
+      <sub>Visual mode selection (pressed `V`)</sub>
+    </td>
+  </tr>
+</table>
 
 ## Features
 
