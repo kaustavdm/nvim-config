@@ -12,3 +12,5 @@ lazy-lock.json
 
 # Claude Code workspace state
 .claude/
+
+.DS_STORE
