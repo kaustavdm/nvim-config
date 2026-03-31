@@ -33,7 +33,7 @@ Custom Neovim configuration built on [lazy.nvim](https://github.com/folke/lazy.n
 
 ## Features
 
-- **Fast startup** — targets <50ms, only 3 plugins load eagerly (colorscheme, snacks, treesitter)
+- **Fast startup** — targets <42ms, only 3 plugins load eagerly (colorscheme, snacks, treesitter)
 - **Custom dashboard** — procedurally generated ASCII mountain art with git status
 - **14 languages** — Go, Rust, Python, TypeScript, Svelte, Tailwind, Docker, Terraform, SQL, Prisma, JSON, YAML, TOML, Markdown
 - **Native completion** — Neovim 0.11+ built-in LSP completion with autotrigger

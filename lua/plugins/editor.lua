@@ -50,7 +50,7 @@ return {
     end,
     opts = {
       sources = { "filesystem", "buffers", "git_status" },
-      open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
+      open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "edgy" },
       filesystem = {
         bind_to_cwd = false,
         follow_current_file = { enabled = true },
@@ -140,6 +140,7 @@ return {
     "folke/edgy.nvim",
     event = "VeryLazy",
     opts = {
+      animate = { enabled = false },
       left = {
         {
           title = "Neo-Tree",
