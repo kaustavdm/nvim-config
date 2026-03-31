@@ -15,8 +15,8 @@ A fast, functional code/text editor configuration for Neovim, built on [lazy.nvi
       <sub>Find file picker</sub>
     </td>
     <td align="center" width="50%">
-      <img src="assets/file-tree-ts.png" alt="File tree with TypeScript"/><br/>
-      <sub>File tree with TypeScript</sub>
+      <img src="assets/file-explorer.png" alt="File explorer"/><br/>
+      <sub>File explorer (Snacks)</sub>
     </td>
   </tr>
   <tr>
