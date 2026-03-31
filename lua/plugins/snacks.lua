@@ -28,8 +28,12 @@ return {
           },
         },
         sections = {
-          require("lib.mountain_art").section(),
-          require("lib.dashboard_status").section(),
+          function()
+            return require("lib.mountain_art").section()()
+          end,
+          function()
+            return require("lib.dashboard_status").section()()
+          end,
           { padding = 1 },
           { section = "keys", gap = 0, padding = 1 },
         },
@@ -56,7 +60,7 @@ return {
       -- Picker keymaps
       { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>bl", function() Snacks.picker.buffers() end, desc = "List Buffers" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
       { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Git Files" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Config Files" },

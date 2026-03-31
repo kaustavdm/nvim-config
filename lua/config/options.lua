@@ -74,8 +74,8 @@ vim.opt.winminwidth = 5
 vim.opt.spell = false
 vim.opt.spelllang = { "en" }
 
--- Diagnostics (off by default)
-vim.diagnostic.enable(false)
+-- Diagnostics disabled in init.lua VeryLazy callback to avoid loading
+-- vim.diagnostic module at startup (~1.5ms saved)
 
 -- Statusline time display (off by default, toggle with <leader>ut)
 vim.g.show_time = false

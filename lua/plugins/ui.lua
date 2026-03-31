@@ -62,7 +62,15 @@ return {
             shorting_target = 40, -- leave room for other components
             symbols = { modified = " +", readonly = " -", unnamed = "[No Name]" },
             fmt = function(str)
-              -- Convert path separators to breadcrumb arrows
+              -- Show cwd breadcrumbs for neo-tree, file path breadcrumbs otherwise
+              if vim.bo.filetype == "neo-tree" then
+                local cwd = vim.uv.cwd() or vim.fn.getcwd()
+                local home = vim.env.HOME or ""
+                if home ~= "" and cwd:sub(1, #home) == home then
+                  cwd = "~" .. cwd:sub(#home + 1)
+                end
+                return cwd:gsub("/", " › ")
+              end
               return str:gsub("/", " › ")
             end,
           },
@@ -88,7 +96,7 @@ return {
           },
         },
       },
-      extensions = { "neo-tree", "lazy" },
+      extensions = { "lazy" },
     },
   },
 

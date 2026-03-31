@@ -9,5 +9,8 @@ vim.api.nvim_create_autocmd("User", {
   callback = function()
     require("config.keymaps")
     require("config.autocmds")
+    -- Disable diagnostics (deferred from options.lua to avoid loading
+    -- vim.diagnostic module during startup)
+    vim.diagnostic.enable(false)
   end,
 })
