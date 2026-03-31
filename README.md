@@ -132,8 +132,8 @@ Leader key is `<Space>`.
 | `<Space>fr` | Recent files   |
 | `<Space>fg` | Git files      |
 | `<Space>fc` | Config files   |
-| `<Space>e`  | File explorer  |
-| `<Space>E`  | Explorer (cwd) |
+| `<Space>e`  | Explorer (git root) |
+| `<Space>E`  | Explorer (cwd)      |
 
 ### Code & LSP
 

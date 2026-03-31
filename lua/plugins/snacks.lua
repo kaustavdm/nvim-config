@@ -60,8 +60,11 @@ return {
     },
     keys = {
       -- Explorer
-      { "<leader>e", function() Snacks.explorer() end, desc = "Explorer (Root Dir)" },
-      { "<leader>E", function() Snacks.explorer({ cwd = vim.uv.cwd() }) end, desc = "Explorer (cwd)" },
+      { "<leader>e", function()
+        local root = vim.fs.root(0, ".git") or vim.uv.cwd()
+        Snacks.explorer({ cwd = root })
+      end, desc = "Explorer (Git Root)" },
+      { "<leader>E", function() Snacks.explorer() end, desc = "Explorer (cwd)" },
       -- Picker keymaps
       { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
