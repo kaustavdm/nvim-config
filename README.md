@@ -1,6 +1,6 @@
 # Neovim Config
 
-Custom Neovim configuration built on [lazy.nvim](https://github.com/folke/lazy.nvim) with a procedural mountain landscape dashboard.
+A fast, functional code/text editor configuration for Neovim, built on [lazy.nvim](https://github.com/folke/lazy.nvim) — focused on editing, not IDE features. Custom mountain landscape dashboard.
 
 <table>
   <tr>
@@ -16,7 +16,7 @@ Custom Neovim configuration built on [lazy.nvim](https://github.com/folke/lazy.n
     </td>
     <td align="center" width="50%">
       <img src="assets/file-tree-ts.png" alt="File tree with TypeScript"/><br/>
-      <sub>File tree (neo-tree) with TypeScript</sub>
+      <sub>File tree with TypeScript</sub>
     </td>
   </tr>
   <tr>
@@ -88,10 +88,10 @@ lazy.nvim will install plugins on first launch. Mason will auto-install LSP serv
       autocmds.lua            # Autocommands (loaded on VeryLazy)
     plugins/
       colorscheme.lua         # tokyonight (eager load)
-      snacks.lua              # Dashboard + picker (eager load)
+      snacks.lua              # Dashboard + picker + explorer (eager load)
       treesitter.lua          # Treesitter, textobjects, autotag (eager load)
       ui.lua                  # Lualine, which-key, mini.icons
-      editor.lua              # Flash, neo-tree, gitsigns, edgy, persistence
+      editor.lua              # Flash, gitsigns, persistence
       coding.lua              # mini.pairs, mini.surround, mini.comment
       lsp.lua                 # LSP config, mason, native completion
       formatting.lua          # conform.nvim (format-on-save)
@@ -108,7 +108,7 @@ lazy.nvim will install plugins on first launch. Mason will auto-install LSP serv
 
 - `nvim` — opens dashboard with mountain art and quick actions
 - `nvim file.lua` — opens file directly (no dashboard)
-- `nvim .` — opens neo-tree file explorer
+- `nvim .` — opens file explorer
 
 ### Essential Workflow
 
@@ -125,16 +125,15 @@ Leader key is `<Space>`.
 
 ### File & Search
 
-| Key         | Action                   |
-| ----------- | ------------------------ |
-| `<Space>ff` | Find files               |
-| `<Space>/`  | Live grep                |
-| `<Space>fb` | Open buffers             |
-| `<Space>fr` | Recent files             |
-| `<Space>fg` | Git files                |
-| `<Space>fc` | Config files             |
-| `<Space>e`  | File explorer (neo-tree) |
-| `<Space>E`  | Explorer (cwd)           |
+| Key         | Action         |
+| ----------- | -------------- |
+| `<Space>ff` | Find files     |
+| `<Space>/`  | Live grep      |
+| `<Space>fr` | Recent files   |
+| `<Space>fg` | Git files      |
+| `<Space>fc` | Config files   |
+| `<Space>e`  | File explorer  |
+| `<Space>E`  | Explorer (cwd) |
 
 ### Code & LSP
 
@@ -216,7 +215,7 @@ Leader key is `<Space>`.
 | `<Space>uw` | Toggle word wrap        |
 | `<Space>us` | Toggle spelling         |
 | `<Space>ut` | Toggle statusline time  |
-| `<Space>ue` | Toggle edgy sidebars    |
+
 
 ### Session & Quit
 

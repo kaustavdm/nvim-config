@@ -18,6 +18,7 @@ return {
                 end
               end,
             },
+            { icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.explorer()" },
             { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
             { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
             { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
@@ -38,6 +39,7 @@ return {
           { section = "keys", gap = 0, padding = 1 },
         },
       },
+      explorer = { enabled = true },
       picker = { enabled = true },
       toggle = { enabled = true },
       rename = { enabled = true },
@@ -57,6 +59,9 @@ return {
       zen = { enabled = false },
     },
     keys = {
+      -- Explorer
+      { "<leader>e", function() Snacks.explorer() end, desc = "Explorer (Root Dir)" },
+      { "<leader>E", function() Snacks.explorer({ cwd = vim.uv.cwd() }) end, desc = "Explorer (cwd)" },
       -- Picker keymaps
       { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },

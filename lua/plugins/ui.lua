@@ -62,8 +62,8 @@ return {
             shorting_target = 40, -- leave room for other components
             symbols = { modified = " +", readonly = " -", unnamed = "[No Name]" },
             fmt = function(str)
-              -- Show cwd breadcrumbs for neo-tree, file path breadcrumbs otherwise
-              if vim.bo.filetype == "neo-tree" then
+              -- Show cwd breadcrumbs for explorer, file path breadcrumbs otherwise
+              if vim.bo.filetype == "snacks_picker_list" then
                 local cwd = vim.uv.cwd() or vim.fn.getcwd()
                 local home = vim.env.HOME or ""
                 if home ~= "" and cwd:sub(1, #home) == home then
