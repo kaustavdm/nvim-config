@@ -12,8 +12,15 @@ return {
       -- This runs at startup (before the plugin loads) so it catches the first file opened.
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter_start", { clear = true }),
-        callback = function()
-          pcall(vim.treesitter.start)
+        callback = function(args)
+          local ok = pcall(vim.treesitter.start)
+          -- Wire treesitter folding only when a parser actually started.
+          if ok then
+            vim.wo.foldmethod = "expr"
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo.foldtext = ""
+            vim.opt_local.foldlevel = 99 -- start fully expanded
+          end
         end,
       })
     end,

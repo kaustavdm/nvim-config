@@ -94,9 +94,7 @@ map("n", "<leader>ut", function()
   vim.notify("Statusline Time " .. (vim.g.show_time and "enabled" or "disabled"))
 end, { desc = "Toggle Time" })
 
--- Quickfix
-map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
+-- Quickfix navigation
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 

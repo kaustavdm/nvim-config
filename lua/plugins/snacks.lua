@@ -67,7 +67,10 @@ return {
       { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
       { "<leader>fF", function() Snacks.picker.files({ hidden = true, ignored = true }) end, desc = "Find Files (incl. ignored)" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>P", function() Snacks.picker.commands() end, desc = "Command Palette" },
+      { "<leader>K", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
       { "<leader>bl", function() Snacks.picker.buffers() end, desc = "List Buffers" },
+      { "<leader>B", function() Snacks.picker.buffers() end, desc = "List Buffers" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
       { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Git Files" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Config Files" },
@@ -76,7 +79,6 @@ return {
       { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Grep Word", mode = { "n", "x" } },
       { "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep Buffers" },
       { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
-      { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
       { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume Search" },
       { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
@@ -84,6 +86,68 @@ return {
       -- Buffer delete
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
       { "<leader>bD", function() Snacks.bufdelete.other() end, desc = "Delete Other Buffers" },
+      -- Tabs
+      {
+        "<leader><tab>L",
+        function()
+          local items = {}
+          for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+            local win = vim.api.nvim_tabpage_get_win(tab)
+            local buf = vim.api.nvim_win_get_buf(win)
+            local name = vim.api.nvim_buf_get_name(buf)
+            local short = name == "" and "[No Name]" or vim.fn.fnamemodify(name, ":~:.")
+            local nr = vim.api.nvim_tabpage_get_number(tab)
+            local cur = tab == vim.api.nvim_get_current_tabpage() and "%" or " "
+            items[#items + 1] = {
+              text = string.format("%s %d  %s", cur, nr, short),
+              tab = tab,
+            }
+          end
+          Snacks.picker.pick({
+            source = "tabs",
+            title = "Tabs",
+            items = items,
+            format = "text",
+            confirm = function(picker, item)
+              picker:close()
+              if item and vim.api.nvim_tabpage_is_valid(item.tab) then
+                vim.api.nvim_set_current_tabpage(item.tab)
+              end
+            end,
+          })
+        end,
+        desc = "List Tabs",
+      },
+      -- Windows
+      {
+        "<leader>wL",
+        function()
+          local items = {}
+          for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            local name = vim.api.nvim_buf_get_name(buf)
+            local short = name == "" and "[No Name]" or vim.fn.fnamemodify(name, ":~:.")
+            local cur = win == vim.api.nvim_get_current_win() and "%" or " "
+            items[#items + 1] = {
+              text = string.format("%s %d  %s", cur, win, short),
+              win = win,
+            }
+          end
+          Snacks.picker.pick({
+            source = "windows",
+            title = "Windows",
+            items = items,
+            format = "text",
+            confirm = function(picker, item)
+              picker:close()
+              if item and vim.api.nvim_win_is_valid(item.win) then
+                vim.api.nvim_set_current_win(item.win)
+              end
+            end,
+          })
+        end,
+        desc = "List Windows",
+      },
       -- Dashboard
       { "<leader>;", function() Snacks.dashboard.open() end, desc = "Dashboard" },
     },

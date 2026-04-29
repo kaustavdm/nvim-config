@@ -123,9 +123,52 @@ lazy.nvim will install plugins on first launch. Mason will auto-install LSP serv
 1. **Find files**: `<Space>ff` or `<Space>/` for grep
 2. **Navigate**: `s` for flash jump, `<C-h/j/k/l>` between windows
 3. **Edit**: `gc` to comment, `gsa` to add surroundings
-4. **Code**: `gd` goto definition, `K` hover, `<Space>ca` code action
+4. **Code**: see [Working with code](#working-with-code) below
 5. **Format**: auto on save, or `<Space>cf` manually
 6. **Git**: gutter signs show changes, `]h`/`[h` navigate hunks
+
+### Working with code
+
+| Action                              | Keys                                          |
+| ----------------------------------- | --------------------------------------------- |
+| Goto definition / hover / code action | `gd` / `K` / `<Space>ca`                    |
+| Search a symbol (current buffer)    | `<Space>ss`                                   |
+| Search a symbol (workspace)         | `<Space>sS`                                   |
+| Move current line up / down         | `<A-k>` / `<A-j>` (normal mode)               |
+| Move selected lines up / down       | `<A-k>` / `<A-j>` (visual mode)               |
+| Toggle fold under cursor            | `za`                                          |
+| Close / open fold under cursor      | `zc` / `zo`                                   |
+| Close / open all folds in buffer    | `zM` / `zR`                                   |
+
+Folds use treesitter, so `zc` collapses the function/block your cursor is inside without you having to mark anything. Files open fully expanded (`foldlevelstart = 99`).
+
+### Working with Tabs, Buffers, and Windows
+
+| Concept    | What it is                                  | When to use it                                          |
+| ---------- | ------------------------------------------- | ------------------------------------------------------- |
+| **Buffer** | An in-memory file (the editable content)    | Default: every file you open is a buffer; cheap to keep dozens around |
+| **Window** | A viewport showing a buffer                 | Split when you need to see two buffers at once (diff, ref + impl, test + code) |
+| **Tab**    | A named layout of windows                   | Group an unrelated workspace (e.g. one tab per task / feature / area of the codebase) |
+
+Rule of thumb: open everything as buffers, split into windows when you need *side-by-side* visibility, reach for tabs only when you want a separate window layout you can switch back to wholesale.
+
+**Splitting to open multiple files side-by-side**
+- `<Space>wv` — vertical split (left/right)
+- `<Space>ws` — horizontal split (top/bottom)
+- Then `<Space>ff` (or any open command) inside the new window
+- `<C-h/j/k/l>` to jump between windows; `<C-Up/Down/Left/Right>` to resize
+- `<Space>wd` close window, `<Space>wo` keep only this one
+
+**Tabs**
+- `<Space><Tab><Tab>` — create new tab
+- `<Space><Tab>]` / `<Space><Tab>[` — switch to next / previous tab
+- `<Space><Tab>L` — fuzzy-find an open tab (like the buffer list)
+- `<Space><Tab>d` close tab, `<Space><Tab>o` close all other tabs
+
+**Buffers**
+- `<S-h>` / `<S-l>` — previous / next buffer (fastest cycling)
+- `<Space>B` (or `<Space>bl`) — fuzzy-find open buffers
+- `<Space>bd` close current buffer (keeps the window open)
 
 ## Keymaps
 
@@ -143,6 +186,9 @@ Leader key is `<Space>`.
 | `<Space>fc` | Config files   |
 | `<Space>e`  | Explorer (git root) |
 | `<Space>E`  | Explorer (cwd)      |
+| `<Space>P`  | Command palette     |
+| `<Space>K`  | Keymaps (search)    |
+| `<Space>?`  | Buffer keymaps (which-key) |
 
 ### File Explorer
 
@@ -184,6 +230,7 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `<Space>cr` | Rename symbol        |
 | `<Space>cR` | Rename file          |
 | `<Space>cf` | Format               |
+| `<Space>cF` | Format injected langs |
 | `<Space>cd` | Line diagnostics     |
 | `<Space>cl` | LSP info             |
 
@@ -204,12 +251,29 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 
 | Key                      | Action               |
 | ------------------------ | -------------------- |
+| `<Space>bl` / `<Space>B` | List buffers         |
 | `<Space>bd`              | Delete buffer        |
 | `<Space>bD`              | Delete other buffers |
 | `<Space>wv`              | Split vertical       |
 | `<Space>ws`              | Split horizontal     |
 | `<Space>wd`              | Close window         |
+| `<Space>ww`              | Other window         |
+| `<Space>wo`              | Close other windows  |
+| `<Space>wL`              | List windows         |
 | `<C-Up/Down/Left/Right>` | Resize windows       |
+
+### Tabs
+
+| Key                  | Action            |
+| -------------------- | ----------------- |
+| `<Space><Tab><Tab>`  | New tab           |
+| `<Space><Tab>]`      | Next tab          |
+| `<Space><Tab>[`      | Previous tab      |
+| `<Space><Tab>f`      | First tab         |
+| `<Space><Tab>l`      | Last tab          |
+| `<Space><Tab>d`      | Close tab         |
+| `<Space><Tab>o`      | Close other tabs  |
+| `<Space><Tab>L`      | List tabs         |
 
 ### Git (gitsigns)
 
@@ -233,10 +297,12 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `<Space>sw` | Grep word under cursor |
 | `<Space>sb` | Grep open buffers      |
 | `<Space>sh` | Help pages             |
-| `<Space>sk` | Keymaps                |
 | `<Space>sm` | Marks                  |
 | `<Space>sr` | Resume last search     |
 | `<Space>sd` | Diagnostics            |
+| `<Space>sD` | Buffer diagnostics     |
+| `<Space>ss` | LSP symbols (buffer)   |
+| `<Space>sS` | LSP workspace symbols  |
 
 ### Toggles
 
@@ -249,6 +315,7 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `<Space>uw` | Toggle word wrap        |
 | `<Space>us` | Toggle spelling         |
 | `<Space>ut` | Toggle statusline time  |
+| `<Space>ur` | Clear hlsearch / redraw |
 
 
 ### Session & Quit
@@ -276,6 +343,16 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `ac` / `ic`        | Around / inside class        |
 | `<A-j>` / `<A-k>`  | Move line down / up          |
 | `<` / `>` (visual) | Indent and reselect          |
+
+### Language-specific
+
+Active only in matching filetype.
+
+| Key         | Filetype | Action                |
+| ----------- | -------- | --------------------- |
+| `<Space>cp` | markdown | Markdown preview toggle |
+| `<Space>D`  | sql      | Toggle DB UI          |
+| `<Space>dr` | rust     | Rust debuggables      |
 
 ## Common Patterns
 

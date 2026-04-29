@@ -58,6 +58,7 @@ vim.opt.completeopt = "menu,menuone,noinsert,fuzzy"
 -- Misc
 vim.opt.confirm = true
 vim.opt.fillchars = { fold = " ", diff = "╱", eob = " " }
+vim.opt.foldlevelstart = 99 -- new buffers open fully expanded
 vim.opt.formatoptions = "jcroqlnt"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.grepprg = "rg --vimgrep"

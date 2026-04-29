@@ -106,6 +106,11 @@ return {
     event = "VeryLazy",
     opts = {
       preset = "helix",
+      -- Snacks dashboard registers every action key with desc="Dashboard action"
+      -- (snacks/dashboard.lua); hide that noise from both global and buffer views.
+      filter = function(mapping)
+        return mapping.desc ~= "Dashboard action"
+      end,
       spec = {
         { "<leader>b", group = "buffer" },
         { "<leader>c", group = "code" },
@@ -116,7 +121,6 @@ return {
         { "<leader>s", group = "search" },
         { "<leader>u", group = "ui/toggle" },
         { "<leader>w", group = "windows" },
-        { "<leader>x", group = "diagnostics/quickfix" },
         { "<leader><tab>", group = "tabs" },
         { "[", group = "prev" },
         { "]", group = "next" },
