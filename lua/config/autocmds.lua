@@ -81,3 +81,27 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     end
   end,
 })
+
+-- Carve-out: 'report' is 9999 globally (see options.lua) so cmdheight=0
+-- doesn't turn ":N lines moved/indented/yanked" into hit-enter prompts. But
+-- :s/foo/bar/g's "N substitutions on M lines" is genuinely useful, so we
+-- temporarily drop the threshold to 0 for substitute commands and restore it
+-- on the next tick (after the command has printed).
+autocmd("CmdlineLeave", {
+  group = augroup("substitute_count"),
+  pattern = ":",
+  callback = function()
+    local ok, parsed = pcall(vim.api.nvim_parse_cmd, vim.fn.getcmdline(), {})
+    if not ok or not parsed then
+      return
+    end
+    if parsed.cmd ~= "substitute" and parsed.cmd ~= "smagic" and parsed.cmd ~= "snomagic" then
+      return
+    end
+    local prev = vim.o.report
+    vim.o.report = 0
+    vim.schedule(function()
+      vim.o.report = prev
+    end)
+  end,
+})
