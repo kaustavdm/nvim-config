@@ -40,7 +40,15 @@ return {
         },
       },
       explorer = { enabled = true },
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = false,
+          },
+        },
+      },
       toggle = { enabled = true },
       rename = { enabled = true },
       bigfile = { enabled = true },
@@ -66,7 +74,8 @@ return {
       end, desc = "Explorer (Git Root)" },
       { "<leader>E", function() Snacks.explorer() end, desc = "Explorer (cwd)" },
       -- Picker keymaps
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+      { "<leader>fF", function() Snacks.picker.files({ hidden = true, ignored = true }) end, desc = "Find Files (incl. ignored)" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>bl", function() Snacks.picker.buffers() end, desc = "List Buffers" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
