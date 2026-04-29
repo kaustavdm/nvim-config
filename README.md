@@ -128,12 +128,38 @@ Leader key is `<Space>`.
 | Key         | Action         |
 | ----------- | -------------- |
 | `<Space>ff` | Find files     |
+| `<Space>fF` | Find files (incl. gitignored) |
 | `<Space>/`  | Live grep      |
 | `<Space>fr` | Recent files   |
 | `<Space>fg` | Git files      |
 | `<Space>fc` | Config files   |
 | `<Space>e`  | Explorer (git root) |
 | `<Space>E`  | Explorer (cwd)      |
+
+### File Explorer
+
+Default state shows dotfiles; gitignored paths are hidden. Toggle either with the keys below. When focused on the search box (after pressing `/`), use `<a-h>` / `<a-i>` instead.
+
+| Key         | Action                              |
+| ----------- | ----------------------------------- |
+| `l` / `<CR>`| Open file / expand directory        |
+| `h`         | Close directory                     |
+| `<BS>`      | Go to parent directory              |
+| `.`         | Set focused directory as root       |
+| `Z`         | Collapse all directories            |
+| `a`         | Add file or directory               |
+| `d`         | Delete                              |
+| `r`         | Rename                              |
+| `c` / `m`   | Copy / move                         |
+| `y` / `p`   | Yank / paste                        |
+| `o`         | Open with system application        |
+| `H`         | Toggle hidden (dotfiles)            |
+| `I`         | Toggle ignored (gitignored paths)   |
+| `P`         | Toggle preview                      |
+| `/`         | Focus search input                  |
+| `<C-c>`     | `:tcd` to focused directory         |
+| `]g` / `[g` | Next / prev git change              |
+| `]d` / `[d` | Next / prev diagnostic              |
 
 ### Code & LSP
 
