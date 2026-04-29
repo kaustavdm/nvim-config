@@ -80,36 +80,6 @@ nvim
 
 lazy.nvim will install plugins on first launch. Mason will auto-install LSP servers and tools.
 
-## Structure
-
-```
-~/.config/nvim/
-  init.lua                    # Entry point: options → lazy → keymaps/autocmds
-  CLAUDE.md                   # Claude Code project instructions
-  lazy-lock.json              # Plugin version lockfile (auto-generated)
-  stylua.toml                 # Lua formatter config
-  lua/
-    config/
-      options.lua             # Vim options (loaded first, sets leader key)
-      lazy.lua                # lazy.nvim bootstrap and setup
-      keymaps.lua             # All non-plugin keymaps (loaded on VeryLazy)
-      autocmds.lua            # Autocommands (loaded on VeryLazy)
-    plugins/
-      colorscheme.lua         # tokyonight (eager load)
-      snacks.lua              # Dashboard + picker + explorer (eager load)
-      treesitter.lua          # Treesitter, textobjects, autotag (eager load)
-      ui.lua                  # Lualine, which-key, mini.icons
-      editor.lua              # Flash, gitsigns, persistence
-      coding.lua              # mini.pairs, mini.surround, mini.comment
-      lsp.lua                 # LSP config, mason, native completion
-      formatting.lua          # conform.nvim (format-on-save)
-      linting.lua             # nvim-lint (debounced)
-      lang/                   # One file per language (14 total)
-    lib/
-      mountain_art.lua        # Procedural dashboard art
-      dashboard_status.lua    # Git status for dashboard
-```
-
 ## Quick Usage Guide
 
 ### Opening Neovim

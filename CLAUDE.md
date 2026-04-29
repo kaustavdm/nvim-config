@@ -43,3 +43,4 @@ Create `lua/plugins/lang/<name>.lua` extending these opts: `nvim-treesitter` (pa
 - Add a completion plugin (blink.cmp, nvim-cmp) — using native completion by design
 - Add these (deliberately excluded): noice.nvim, bufferline.nvim, neo-tree, edgy.nvim, trouble.nvim, todo-comments, treesitter-context, mini.ai, mini.snippets, grug-far
 - Add IDE-style features (debugger, test runner, task runner) — this is an editor, not an IDE
+- Add a file/directory tree to `README.md` — drifts stale on refactors; architecture/load-order belongs in this file
