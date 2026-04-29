@@ -63,6 +63,14 @@ brew install tree-sitter-cli
 > **Important:** Font, font-sizing, and font-spacing must be set in the terminal settings.
 > e.g., set `0xProto Nerd Font` as the font in your iTerm2 profile.
 
+### iTerm2: Option key as Meta
+
+By default, macOS forwards `Option+<key>` as a composed character (e.g. `Option+j` → `∆`), which prevents `<A-*>` keymaps from firing in Neovim — including the move-line mappings (`<A-j>` / `<A-k>`) and various plugin defaults. Configure iTerm2 to forward Option as Meta:
+
+**Settings → Profiles → Keys → Key Mappings tab → set _Left Option key_ to `Esc+`**.
+
+Leaving the **Right Option key** as `Normal` preserves macOS diacritic composition (`Option+e e` → `é`) while making left-Option behave as Alt for Neovim mappings.
+
 ## Setup
 
 ```sh
