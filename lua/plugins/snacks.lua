@@ -43,9 +43,9 @@ return {
       rename = { enabled = true },
       bigfile = { enabled = true },
       quickfile = { enabled = true },
+      notifier = { enabled = true },
 
       -- Disabled modules
-      notifier = { enabled = false },
       scroll = { enabled = false },
       indent = { enabled = false },
       scope = { enabled = false },
