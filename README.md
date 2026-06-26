@@ -36,7 +36,7 @@ A fast, functional code/text editor configuration for Neovim, built on [lazy.nvi
 - **Fast startup** — targets <42ms, only 3 plugins load eagerly (colorscheme, snacks, treesitter)
 - **Custom dashboard** — procedurally generated ASCII mountain art with git status
 - **14 languages** — Go, Rust, Python, TypeScript, Svelte, Tailwind, Docker, Terraform, SQL, Prisma, JSON, YAML, TOML, Markdown
-- **Native completion** — Neovim 0.11+ built-in LSP completion with autotrigger
+- **Native completion** — Neovim 0.12 built-in LSP completion with autotrigger + documentation preview
 - **Custom statusline** — single-letter mode, git branch, diff, file breadcrumbs, pending keys
 - **Hidden command line** — `cmdheight=0` for a minimal UI; commands appear transiently
 
@@ -55,7 +55,7 @@ brew install --cask font-0xproto-nerd-font
 brew install tree-sitter-cli
 ```
 
-- **neovim** >= 0.11.0 (required for native LSP completion)
+- **neovim** >= 0.12.0 (config uses 0.12 LSP/UI APIs: completion popup, `pumborder`, document color, linked editing)
 - **fd** — file finder used by the picker
 - **ripgrep** — content search used by live grep
 - **Nerd Font** — required for icons; any patched font works
@@ -285,6 +285,8 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `<Space>uw` | Toggle word wrap        |
 | `<Space>us` | Toggle spelling         |
 | `<Space>ut` | Toggle statusline time  |
+| `<Space>uc` | Toggle completion preview |
+| `<Space>uu` | Undotree (undo history) |
 | `<Space>ur` | Clear hlsearch / redraw |
 
 
@@ -297,6 +299,7 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `<Space>ql` | Restore last session   |
 | `<Space>qd` | Don't save session     |
 | `<Space>qq` | Quit all               |
+| `ZR`        | Restart Nvim (`:restart`) |
 | `<Space>l`  | Lazy (plugin manager)  |
 | `<Space>cm` | Mason (tool installer) |
 | `<Space>;`  | Dashboard              |
@@ -311,6 +314,8 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `gsr`              | Replace surrounding          |
 | `af` / `if`        | Around / inside function     |
 | `ac` / `ic`        | Around / inside class        |
+| `an` / `in` (visual) | Grow / shrink treesitter selection |
+| `]n` / `[n` (visual) | Next / prev treesitter node  |
 | `<A-j>` / `<A-k>`  | Move line down / up          |
 | `<` / `>` (visual) | Indent and reselect          |
 
@@ -356,16 +361,19 @@ return {
 
 ### Changing Colorscheme
 
-Edit `lua/plugins/colorscheme.lua`:
+Default is **catppuccin** (mocha flavour). Edit `lua/plugins/colorscheme.lua` to switch flavour or theme:
 
 ```lua
 return {
   {
-    "author/theme.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme("theme")
+    opts = { flavour = "mocha" }, -- latte | frappe | macchiato | mocha
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
 }

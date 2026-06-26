@@ -7,7 +7,9 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.shiftround = true
-vim.opt.smartindent = true
+-- No smartindent: its C-style heuristics ({/}/# → col 0) misfire on filetypes
+-- without an indent script (markdown, toml, svelte, …) and were landing Return
+-- in the wrong column. autoindent (Neovim default) + filetype indentexpr suffice.
 
 -- Line numbers
 vim.opt.number = true
@@ -54,7 +56,10 @@ vim.opt.timeoutlen = 300
 vim.opt.updatetime = 200
 
 -- Completion (native Neovim 0.11+)
-vim.opt.completeopt = "menu,menuone,noinsert,fuzzy"
+-- "popup" (0.12) shows a documentation/resolve preview beside the menu.
+vim.opt.completeopt = "menu,menuone,noinsert,fuzzy,popup"
+vim.opt.pumborder = "rounded" -- 0.12: border around the completion popup
+vim.opt.pummaxwidth = 50 -- 0.12: cap completion menu width (0 = no limit)
 
 -- Misc
 vim.opt.confirm = true

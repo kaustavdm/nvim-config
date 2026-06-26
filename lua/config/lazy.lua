@@ -21,7 +21,7 @@ require("lazy").setup({
     { import = "plugins.lang" },
   },
   defaults = { lazy = true },
-  install = { colorscheme = { "tokyonight" } },
+  install = { colorscheme = { "catppuccin" } },
   checker = { enabled = true, notify = false },
   change_detection = { notify = false },
   performance = {

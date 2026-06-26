@@ -110,6 +110,16 @@ return {
           if client:supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true, { bufnr = buf })
           end
+
+          -- 0.12: inline color swatches for color values (CSS/Tailwind/Svelte/HTML)
+          if client:supports_method("textDocument/documentColor") then
+            vim.lsp.document_color.enable(true, { bufnr = buf })
+          end
+
+          -- 0.12: linked editing — rename paired tokens (e.g. HTML/JSX tags)
+          if client:supports_method("textDocument/linkedEditingRange") then
+            vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+          end
         end,
       })
 

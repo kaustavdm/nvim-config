@@ -94,6 +94,31 @@ map("n", "<leader>ut", function()
   vim.notify("Statusline Time " .. (vim.g.show_time and "enabled" or "disabled"))
 end, { desc = "Toggle Time" })
 
+-- Toggle the 0.12 completion preview popup + bordered/capped menu.
+-- Lives in the <leader>u toggle namespace (<leader>cp is taken by markdown preview).
+map("n", "<leader>uc", function()
+  local on = vim.tbl_contains(vim.opt.completeopt:get(), "popup")
+  if on then
+    vim.opt.completeopt:remove("popup")
+    vim.opt.pumborder = ""
+    vim.opt.pummaxwidth = 0
+  else
+    vim.opt.completeopt:append("popup")
+    vim.opt.pumborder = "rounded"
+    vim.opt.pummaxwidth = 50
+  end
+  vim.notify("Completion preview " .. (on and "disabled" or "enabled"))
+end, { desc = "Toggle Completion Preview" })
+
+-- 0.12 built-ins
+-- Undotree is an opt-in bundled plugin (pack/dist/opt) — packadd on first use.
+map("n", "<leader>uu", function()
+  vim.cmd("packadd nvim.undotree")
+  vim.cmd("Undotree")
+end, { desc = "Undotree" })
+-- ZR mirrors the documented mnemonic for :restart (not mapped by default).
+map("n", "ZR", "<cmd>restart<cr>", { desc = "Restart Nvim" })
+
 -- Quickfix navigation
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })

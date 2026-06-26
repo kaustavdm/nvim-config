@@ -75,7 +75,20 @@ return {
             end,
           },
         },
-        lualine_x = { "filetype" },
+        lualine_x = {
+          {
+            -- 0.12: live LSP/progress-message status
+            function()
+              local ok, s = pcall(vim.ui.progress_status)
+              return ok and s or ""
+            end,
+            cond = function()
+              local ok, s = pcall(vim.ui.progress_status)
+              return ok and s ~= nil and s ~= ""
+            end,
+          },
+          "filetype",
+        },
         lualine_y = {
           { "%S", separator = "" }, -- show pending keys/macro recording
           {
