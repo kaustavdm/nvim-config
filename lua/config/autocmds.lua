@@ -52,6 +52,7 @@ autocmd("FileType", {
     "neotest-output",
     "neotest-output-panel",
     "neotest-summary",
+    "nvim-undotree",
     "startuptime",
   },
   callback = function(event)
