@@ -38,7 +38,7 @@ A fast, functional code/text editor configuration for Neovim, built on [lazy.nvi
 - **14 languages** — Go, Rust, Python, TypeScript, Svelte, Tailwind, Docker, Terraform, SQL, Prisma, JSON, YAML, TOML, Markdown
 - **Native completion** — Neovim 0.12 built-in LSP completion with autotrigger + documentation preview
 - **Custom statusline** — single-letter mode, git branch, diff, file breadcrumbs, pending keys
-- **Hidden command line** — `cmdheight=0` for a minimal UI; commands appear transiently
+- **Hidden command line** — `cmdheight=0` with Neovim 0.12 `ui2` message/cmdline UI; commands appear transiently without "Press ENTER" prompts
 
 ## Prerequisites
 

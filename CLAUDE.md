@@ -27,6 +27,7 @@ Fast, functional code/text editor — not an IDE. Built on **bare lazy.nvim** (N
 - `vim.g.show_time` controls statusline time display (toggle: `<leader>ut`)
 - Diagnostics off by default (`vim.diagnostic.enable(false)` in VeryLazy callback)
 - `cmdheight = 0` — cmdline hidden when idle, appears transiently
+- `vim._core.ui2` enabled in `init.lua` (experimental 0.12 message/cmdline redesign, pcall-guarded) — it removes "Press ENTER" prompts, which is why `cmdheight = 0` needs no `report`/`CmdlineLeave` workarounds
 - Treesitter uses main-branch API: `require("nvim-treesitter").install()` (not `ensure_installed` in setup); highlighting via native `vim.treesitter.start()` in a `FileType` autocmd. Main branch provides **highlighting only, NO `indentexpr`** — indent-on-Return comes from `autoindent` (Neovim default) + bundled filetype indent scripts
 - Do NOT re-enable `smartindent` — its C-style heuristics misfire on filetypes without an indent script (markdown/toml/svelte) and land Return in the wrong column (the bug it caused)
 - `performance.rtp.paths` includes `stdpath("data")/site` so out-of-plugin-dir parsers are found
