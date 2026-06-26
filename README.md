@@ -36,8 +36,9 @@ A fast, functional code/text editor configuration for Neovim, built on [lazy.nvi
 - **Fast startup** — targets <42ms, only 3 plugins load eagerly (colorscheme, snacks, treesitter)
 - **Custom dashboard** — procedurally generated ASCII mountain art with git status
 - **14 languages** — Go, Rust, Python, TypeScript, Svelte, Tailwind, Docker, Terraform, SQL, Prisma, JSON, YAML, TOML, Markdown
-- **Native completion** — Neovim 0.12 built-in LSP completion with autotrigger + documentation preview
-- **Custom statusline** — single-letter mode, git branch, diff, file breadcrumbs, pending keys
+- **Native completion** — Neovim 0.12 built-in LSP completion with autotrigger + documentation preview (toggle with `<Space>uc`)
+- **LSP color & linked editing** — inline color swatches for CSS/Tailwind/Svelte values; paired-token (HTML/JSX tag) linked editing, capability-gated
+- **Custom statusline** — single-letter mode, git branch, diff, file breadcrumbs, pending keys, live LSP progress
 - **Hidden command line** — `cmdheight=0` with Neovim 0.12 `ui2` message/cmdline UI; commands appear transiently without "Press ENTER" prompts
 
 ## Prerequisites

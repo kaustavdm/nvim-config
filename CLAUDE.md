@@ -25,6 +25,7 @@ Fast, functional code/text editor — not an IDE. Built on **bare lazy.nvim** (N
 - which-key `filter` in `lua/plugins/ui.lua` drops `desc == "Dashboard action"` entries (Snacks hard-codes that string in `snacks/dashboard.lua` for every dashboard key). Re-check this string when editing dashboard `preset.keys` in `lua/plugins/snacks.lua` or after Snacks upgrades.
 - `vim.g.autoformat` controls format-on-save (toggle: `<leader>uf`)
 - `vim.g.show_time` controls statusline time display (toggle: `<leader>ut`)
+- Native completion UI: `completeopt` includes `popup` (doc preview), styled by `pumborder`/`pummaxwidth`; `<leader>uc` toggles all three on/off together
 - Diagnostics off by default (`vim.diagnostic.enable(false)` in VeryLazy callback)
 - `cmdheight = 0` — cmdline hidden when idle, appears transiently
 - `vim._core.ui2` enabled in `init.lua` (experimental 0.12 message/cmdline redesign, pcall-guarded) — it removes "Press ENTER" prompts, which is why `cmdheight = 0` needs no `report`/`CmdlineLeave` workarounds
