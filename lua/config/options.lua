@@ -26,8 +26,7 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.showmode = false -- lualine shows mode
 vim.opt.laststatus = 3 -- global statusline
-vim.opt.cmdheight = 0 -- hide command line when not in use
-vim.opt.report = 9999 -- silence "N lines moved/indented/yanked"; with cmdheight=0 they cause hit-enter prompts that break keymap chains (e.g. visual <A-j>/<A-k>'s gv=gv)
+vim.opt.cmdheight = 0 -- hide command line when not in use (ui2 handles cmdline)
 vim.opt.wrap = false
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8
