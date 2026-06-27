@@ -23,6 +23,7 @@ Fast, functional code/text editor — not an IDE. Built on **bare lazy.nvim** (N
 - `opts_extend = { "ensure_installed" }` on treesitter/mason allows lang files to extend lists
 - Snacks per-source config goes in `opts.picker.sources.<name>` (e.g. `sources.explorer = { hidden = true }`); merged onto built-in defaults in `snacks.nvim/lua/snacks/picker/config/sources.lua`
 - which-key `filter` in `lua/plugins/ui.lua` drops `desc == "Dashboard action"` entries (Snacks hard-codes that string in `snacks/dashboard.lua` for every dashboard key). Re-check this string when editing dashboard `preset.keys` in `lua/plugins/snacks.lua` or after Snacks upgrades.
+- Wrap-aware motions in `keymaps.lua` (`wrapmap` helper): when `&wrap` is on, `j k 0 ^ $ <Down> <Up> <Home> <End>` return their `g`-prefixed visual-line variants via `expr` maps (count rides along: `5j`→`5gj`); plain builtins when wrap off. Mapped only in `n`/`x` (NOT operator-pending, so `dj`/`d$` stay logical). expr maps are non-recursive → emitted `gj`/`g0` run as builtins (no recursion/lag); no existing map starts with these keys so there's no `timeoutlen` ambiguity
 - `vim.g.autoformat` controls format-on-save (toggle: `<leader>uf`)
 - `vim.g.show_time` controls statusline time display (toggle: `<leader>ut`)
 - Native completion UI: `completeopt` includes `popup` (doc preview), styled by `pumborder`/`pummaxwidth`; `<leader>uc` toggles all three on/off together

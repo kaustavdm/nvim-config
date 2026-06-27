@@ -41,6 +41,28 @@ map("n", "<leader>ur", "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><cr>", {
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
+-- Wrap-aware motions: when 'wrap' is on (toggle <leader>uw), vertical and
+-- line-edge motions follow *visual* lines. A count rides along to the visual
+-- motion too, so 5j -> 5gj (display rows, not real lines). Mapped only in
+-- normal & visual mode (not operator-pending) so dj/d$ stay linewise/charwise
+-- on the logical line. expr maps are non-recursive, so the emitted g-motions
+-- run as builtins (no recursion, no timeout/lag).
+local function wrapmap(lhs, real, visual)
+  map({ "n", "x" }, lhs, function()
+    return vim.wo.wrap and visual or real
+  end, { expr = true, silent = true, desc = "Move " .. lhs .. " (wrap-aware)" })
+end
+
+wrapmap("j", "j", "gj")
+wrapmap("k", "k", "gk")
+wrapmap("<Down>", "j", "gj")
+wrapmap("<Up>", "k", "gk")
+wrapmap("0", "0", "g0")
+wrapmap("^", "^", "g^")
+wrapmap("$", "$", "g$")
+wrapmap("<Home>", "0", "g0")
+wrapmap("<End>", "$", "g$")
+
 -- Tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
 map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })

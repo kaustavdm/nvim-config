@@ -217,6 +217,13 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `]c` / `[c`       | Next / prev class       |
 | `]h` / `[h`       | Next / prev git hunk    |
 | `]d` / `[d`       | Next / prev diagnostic  |
+| `j` `k` `0` `^` `$` | Wrap-aware (see below)  |
+
+When word wrap is on (`<Space>uw`), vertical and line-edge motions follow
+**visual** lines: `j`/`k`/`<Down>`/`<Up>` move by screen rows, `0`/`^`/`$`/`<Home>`/`<End>`
+go to the visual line edge. A count follows visual lines too (`5j` → `5gj`).
+With wrap off (the default) they are the plain builtins. Operator-pending motions
+(`dj`, `d$`) are unaffected — they stay on the logical line.
 
 ### Buffer & Window
 
@@ -283,7 +290,7 @@ Default state shows dotfiles; gitignored paths are hidden. Toggle either with th
 | `<Space>ud` | Toggle diagnostics      |
 | `<Space>ul` | Toggle line numbers     |
 | `<Space>uL` | Toggle relative numbers |
-| `<Space>uw` | Toggle word wrap        |
+| `<Space>uw` | Toggle word wrap (enables wrap-aware motions) |
 | `<Space>us` | Toggle spelling         |
 | `<Space>ut` | Toggle statusline time  |
 | `<Space>uc` | Toggle completion preview |
